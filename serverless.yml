@@ -30,7 +30,7 @@ functions:
     codeUri: target/function.zip
     environment:
       variables:
-        DISABLE_SIGNAL_HANDLERS: true
+        DISABLE_SIGNAL_HANDLERS: 'true'
     events:
       - http:
           path: /users
