@@ -20,12 +20,14 @@ provider:
 #    variable1: value1
 
 # you can add packaging information here
-#package:
-#  artifact: target/LambdaQuarkus-1.0-SNAPSHOT-runner.jar
+
+package:
+  artifact: target/function.zip
 
 functions:
   solicitation:
-    handler: not.used.in.provided.runtime
+    handler: io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler::handleRequest 
+            #not.used.in.provided.runtime
     runtime: provided
     codeUri: target/function.zip
     environment:
