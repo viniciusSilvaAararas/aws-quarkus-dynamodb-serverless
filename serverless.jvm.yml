@@ -7,12 +7,12 @@ provider:
   stage: dev
   region: sa-east-1
 
-  # you can add statements to the Lambda function's IAM Role here
+# you can add statements to the Lambda function's IAM Role here
   iamRoleStatements:
-    - Effect: "Allow"
-      Action:
-        - "dynamodb:*"
-      Resource: "*"
+   - Effect: "Allow"
+     Action:
+       - "dynamodb:*"
+     Resource: "*"
 
 
 # you can define service wide environment variables here
@@ -20,18 +20,12 @@ provider:
 #    variable1: value1
 
 # you can add packaging information here
-#package:
-#  artifact: target/LambdaQuarkus-1.0-SNAPSHOT-runner.jar
+package:
+  artifact: target/LambdaQuarkus-1.0-SNAPSHOT-runner.jar
 
 functions:
   solicitation:
-    handler: not.used.in.provided.runtime
-    runtime: provided
-    codeUri: target/function.zip
-    environment:
-      variables:
-        # see https://quarkus.io/guides/amazon-lambda-http
-        DISABLE_SIGNAL_HANDLERS: true
+    handler: io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler::handleRequest
     events:
       - http:
           path: /users
